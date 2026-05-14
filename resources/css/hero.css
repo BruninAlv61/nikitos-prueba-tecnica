@@ -47,15 +47,25 @@
             width: 100%;
             border-radius: 20px;
             padding: 8px 20px;
+            transition: all 0.3s ease;
         }
 
         .catalog-btn {
             background-color: #fff;
+
+            &:hover {
+                color: #ff9900;
+            }
         }
 
         .products-btn {
             color: #fff;
             border: 2px solid #fff;
+
+            &:hover {
+                color: #ff9900;
+                border-color: #ff9900;
+            }
         }
     }
 }

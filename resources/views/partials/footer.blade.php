@@ -12,15 +12,17 @@
         </div>
     </section>
     <section class="footer__links">
-        <h4>Secciones</h4>
-        <a href="">Home</a>
-        <a href="">Productos</a>
-        <a href="">Donde comprar</a>
-        <a href="">RSE</a>
-        <a href="">Recetas</a>
-        <a href="">Nosotros</a>
-        <a href="">Contacto</a>
-        <a href="">Politicas de calidad</a>
+        <h4 class="footer__links__h4">Secciones</h4>
+        <div class="footer__links__container">
+            <a class="footer__links_a" href="">Home</a>
+            <a class="footer__links_a" href="">Productos</a>
+            <a class="footer__links_a" href="">Donde comprar</a>
+            <a class="footer__links_a" href="">RSE</a>
+            <a class="footer__links_a" href="">Recetas</a>
+            <a class="footer__links_a" href="">Nosotros</a>
+            <a class="footer__links_a" href="">Contacto</a>
+            <a class="footer__links_a" href="">Politicas de calidad</a>
+        </div>
     </section>
 
     <section class="footer__newsletter">
@@ -35,24 +37,26 @@
         <h4 class="footer__contact__h4">Contacto</h4>
         <div class="footer__contact__div">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-            <a href="https://www.google.com/maps/search/?api=1&query=Av.%20Otero%204550%2C%20Pontevedra%2C%20Provincia%20de%20Buenos%20Aires">Av. Otero 4550, Pontevedra, Provincia de Buenos Aires</a>
+            <a class="footer_contact_a" href="https://www.google.com/maps/search/?api=1&query=Av.%20Otero%204550%2C%20Pontevedra%2C%20Provincia%20de%20Buenos%20Aires">Av. Otero 4550, Pontevedra, Provincia de Buenos Aires</a>
         </div>
         <div class="footer__contact__div">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone-icon lucide-phone"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg>
-            <p>+54 220 492-4752</p>
+            <a class="footer_contact_a" href="">+54 220 492-4752</a>
         </div>
         <div class="footer__contact__div">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
-            <a href="mailto:ventas@nikitos.com.ar">ventas@nikitos.com.ar</a>
+            <a class="footer_contact_a" href="mailto:ventas@nikitos.com.ar">ventas@nikitos.com.ar</a>
         </div>
         <div class="footer__contact__div">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            <p>Lunes a Viernes 9.00 a 17:30hs</p>
+            <a class="footer_contact_a" href="">Lunes a Viernes 9.00 a 17:30hs</a>
         </div>
     </section>
 
     <section class="footer__copyright">
-        <p class="footer__copyright__p">© Copyright 2025 Nikitos Snacks. Todos los derechos reservados.</p>
-        <a class="footer__copyright__a" href="https://osole.com.ar/">by <span class="footer__copyright__a__span">Osole</span></a>
+        <div class="footer__copyright__container">
+            <p class="footer__copyright__p">© Copyright 2025 Nikitos Snacks. Todos los derechos reservados.</p>
+            <a class="footer__copyright__a" href="https://osole.com.ar/">by <span class="footer__copyright__a__span">Osole</span></a>
+        </div>
     </section>
 </footer>

@@ -5,6 +5,9 @@
     height: 322px;
     border-radius: 8px;
     padding: 10px;
+    transition:
+        opacity 0.3s ease,
+        filter 0.3s ease;
 
     .card-category__img {
         width: 300px;
@@ -26,7 +29,29 @@
     .card-category__button {
         color: #fff;
         font-weight: 550;
+        position: relative;
+        padding-bottom: 2px;
     }
+
+    .card-category__button::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background-color: currentColor;
+        transition: width 0.3s ease-out;
+    }
+}
+
+.card-category:hover .card-category__button::after {
+    width: 50px;
+}
+
+.card-category:not(.card-category--no-color):hover {
+    opacity: 0.85;
 }
 
 .card-category--no-color {
@@ -38,4 +63,12 @@
     max-height: none;
     object-fit: cover;
     border-radius: 8px;
+}
+
+@media (min-width: 410px) {
+    .card-category {
+        .card-category__img {
+            height: 200px;
+        }
+    }
 }

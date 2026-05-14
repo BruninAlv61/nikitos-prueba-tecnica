@@ -1,0 +1,51 @@
+.card-grid {
+    display: flex;
+    flex-direction: column;
+    padding: 3em 1em;
+    width: 100%;
+}
+
+.card-grid__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 2em;
+}
+
+.card-grid__container {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile first: 1 col */
+    gap: 20px;
+    width: 100%;
+}
+
+/* > 640px: 2 columnas */
+@media (min-width: 640px) {
+    .card-grid__container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* > 1040px: 3 columnas */
+@media (min-width: 1040px) {
+    .card-grid__container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* > 1230px: Ajustes de layout generales para mantener consistencia con otras secciones */
+@media (min-width: 1230px) {
+    .card-grid {
+        width: 1224px;
+        margin: 0 auto;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+/* > 1250px: 4 columnas (si el componente tiene 4 cols permitidas) */
+@media (min-width: 1250px) {
+    .card-grid__container--cols-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

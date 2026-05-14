@@ -84,6 +84,12 @@
             color: #fff;
             font-weight: 560;
             cursor: pointer;
+
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: #ffae36;
+            }
         }
     }
 
@@ -138,6 +144,11 @@
             color: #fff;
             font-weight: 560;
             cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: #ffae36;
+            }
         }
     }
 }
