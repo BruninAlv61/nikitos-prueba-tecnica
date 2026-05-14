@@ -22,11 +22,22 @@ class DatabaseSeeder extends Seeder
                     'email' => 'test@example.com',
                 ]);
         */
+        // Crear usuario administrador demo
+        User::updateOrCreate(
+            ['email' => 'admin@nikitos.com.ar'],
+            [
+                'name' => 'Admin Nikitos',
+                'password' => bcrypt('admin123'),
+                'email_verified_at' => now(),
+            ]
+        );
+
         $this->call([
             CategoriasSeeder::class,
             ProductosSeeder::class,
             NosotrosContenidoSeeder::class,
             RecetaSeeder::class,
         ]);
+
     }
 }
