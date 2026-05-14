@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('codigo');
+            $table->string('tamaño')->nullable();
+            $table->string('vida_util')->nullable();
+            $table->string('imagen')->nullable();
+            $table->foreignId('categoria_id')->constrained('categorias')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -1,0 +1,132 @@
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    width: 100%;
+    height: 80dvh;
+    padding-top: 100px;
+
+    .hero__video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    .hero__text {
+        display: grid;
+        padding: 1rem;
+        gap: 20px;
+
+        .hero__text__title {
+            color: #fff;
+            font-weight: 600;
+            font-size: 2rem;
+        }
+
+        .hero__text__subtitle {
+            color: #fff;
+            font-size: 1.2rem;
+        }
+    }
+
+    .hero__actions {
+        display: grid;
+        width: 100%;
+        padding: 20px;
+        gap: 15px;
+
+        .hero__actions__button {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            border-radius: 20px;
+            padding: 8px 20px;
+        }
+
+        .catalog-btn {
+            background-color: #fff;
+        }
+
+        .products-btn {
+            color: #fff;
+            border: 2px solid #fff;
+        }
+    }
+}
+
+@media (min-width: 640px) {
+    .hero {
+        .hero__text {
+            .hero__text__title {
+                font-size: 3rem;
+            }
+            .hero__text__subtitle {
+                width: 400px;
+            }
+        }
+
+        .hero__actions {
+            display: flex;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .hero {
+        .hero__text {
+            max-width: 70%;
+            .hero__text__title {
+                font-size: 80px;
+            }
+
+            .hero__text__subtitle {
+                width: 450px;
+            }
+        }
+
+        .hero__actions {
+            width: 50%;
+
+            .hero__actions__button {
+                padding: 8px 0px;
+            }
+        }
+    }
+}
+
+@media (min-width: 1230px) {
+    .hero {
+        align-items: center;
+        .hero__text {
+            max-width: 1224px;
+            padding: 0;
+
+            .hero__text__title {
+                width: 1224px;
+                text-align: start;
+            }
+        }
+
+        .hero__actions {
+            width: 1224px;
+            justify-content: flex-start;
+            padding: 4rem 0;
+
+            .hero__actions__button {
+                width: 220px;
+            }
+        }
+    }
+}
+
+@media (min-width: 1540px) {
+    .hero {
+        height: 70dvh;
+    }
+}

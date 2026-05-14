@@ -1,0 +1,209 @@
+.about-us {
+    display: flex;
+    height: auto;
+
+    background-color: #ffa221;
+
+    .about-us__content {
+        display: flex;
+        height: auto;
+
+        transform: translateY(-50px);
+        .about-us__content__text {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-left: 10px;
+
+            .about-us__content__text__h3 {
+                font-size: 1.8rem;
+                font-weight: 600;
+                color: #fff;
+            }
+
+            .about-us__content__text__p {
+                color: #fff;
+            }
+
+            .about-us__content__text__btn {
+                width: fit-content;
+                background-color: #fff;
+                color: #ffa221;
+                font-weight: 600;
+                padding: 10px 50px;
+                border-radius: 20px;
+            }
+        }
+
+        .about-us__content__img-container {
+            z-index: 5;
+            position: relative;
+            transform: translateY(-90px);
+
+            .about-us__content__img-container__img {
+                width: 2500px;
+            }
+        }
+    }
+
+    .about-us__vector {
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+    }
+
+    .v1 {
+        transform: translateY(-80px);
+    }
+
+    .v2 {
+        transform: translateY(calc(370px));
+    }
+}
+
+@media (min-width: 400px) {
+    .about-us {
+        .v2 {
+            transform: translateY(calc(340px));
+        }
+    }
+}
+
+@media (min-width: 425px) {
+    .about-us {
+        .v2 {
+            transform: translateY(calc(305px));
+        }
+    }
+}
+
+@media (min-width: 462px) {
+    .about-us {
+        .v2 {
+            transform: translateY(calc(242px));
+        }
+    }
+}
+
+@media (min-width: 508px) {
+    .about-us {
+        .v2 {
+            transform: translateY(calc(189px));
+        }
+    }
+}
+
+@media (min-width: 559px) {
+    .about-us {
+        .v2 {
+            transform: translateY(calc(151px));
+        }
+    }
+}
+
+@media (min-width: 648px) {
+    .about-us {
+        .about-us__content {
+            .about-us__content__text {
+                padding-left: 2rem;
+            }
+        }
+    }
+}
+
+@media (min-width: 845px) {
+    .about-us {
+        .about-us__content {
+            .about-us__content__text {
+                padding-top: 3rem;
+
+                .about-us__content__text__h3 {
+                    font-size: 2.1rem;
+                }
+
+                .about-us__content__text__p {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 559px) {
+    .about-us {
+        .v1 {
+            transform: translateY(calc(-90px));
+        }
+    }
+}
+
+@media (min-width: 1140px) {
+    .about-us {
+        height: auto;
+        margin-bottom: 80px;
+        .about-us__content {
+            height: 400px;
+            .about-us__content__text {
+                margin-top: 4rem;
+                height: fit-content;
+
+                .about-us__content__text__h3 {
+                    font-size: 3rem;
+                }
+            }
+
+            .about-us__content__img-container {
+                height: fit-content;
+                padding: 0;
+                transform: translateY(-180px);
+                .about-us__content__img-container__img {
+                    max-width: 487px;
+                }
+            }
+        }
+        .v2 {
+            transform: translateY(-40px);
+        }
+    }
+}
+
+@media (min-width: 1230px) {
+    .about-us {
+        width: 100%;
+        justify-content: center;
+
+        .about-us__content {
+            width: 1224px;
+            .about-us__content__text {
+                padding: 0;
+
+                .about-us__content__text__btn {
+                    margin-top: 30px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1320px) {
+    .about-us {
+        .v1 {
+            height: 650px;
+        }
+        .v2 {
+            display: none;
+        }
+    }
+}
+
+@media (min-width: 1850px) {
+    .about-us {
+        .v1 {
+            height: 680px;
+        }
+
+        .v2 {
+            display: none;
+        }
+    }
+}

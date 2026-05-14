@@ -1,0 +1,99 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f29109;
+    padding-top: 2rem;
+    gap: 20px;
+
+    .footer__vector {
+        width: 100%;
+        position: absolute;
+        z-index: 1;
+        transform: translateY(calc(-20px - 2rem));
+    }
+
+    .footer__links,
+    .footer__brands,
+    .footer__newsletter,
+    .footer__contact {
+        z-index: 2;
+    }
+
+    .footer__brands {
+        display: grid;
+
+        .footer__brands-social {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+    }
+
+    .footer__links {
+        display: none;
+    }
+
+    .footer__newsletter {
+        display: grid;
+        place-items: center;
+
+        .footer__newsletter__h4 {
+            font-size: 1.1rem;
+            text-align: center;
+            font-weight: 550;
+            color: #fff;
+        }
+
+        .footer__newsletter__form {
+            display: flex;
+            padding: 10px;
+            width: 100%;
+            border-radius: 10px;
+            background-color: #fff;
+            .footer__newsletter__form-input {
+                height: 100%;
+            }
+            .footer__newsletter__form-input:focus {
+                outline: none;
+            }
+        }
+    }
+
+    .footer__contact {
+        display: grid;
+        gap: 10px;
+        padding: 10px;
+
+        .footer__contact__h4 {
+            font-size: 1.1rem;
+            text-align: center;
+            font-weight: 550;
+            color: #fff;
+        }
+
+        .footer__contact__div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+        }
+    }
+
+    .footer__copyright {
+        display: grid;
+        place-items: center;
+        background-color: #ee9336;
+        padding: 10px;
+        gap: 10px;
+        color: #fff;
+
+        .footer__copyright__p {
+            text-align: center;
+        }
+
+        .footer__copyright__a__span {
+            font-weight: 700;
+        }
+    }
+}
