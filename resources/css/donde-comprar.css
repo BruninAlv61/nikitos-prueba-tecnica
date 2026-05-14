@@ -1,0 +1,224 @@
+/* ═══════════════════════════════════════════════
+   Donde comprar — mobile first, max 1224px
+   ══════════════════════════════════════════════ */
+
+/* Wrapper centrado a 1224px igual que el resto del sitio */
+.donde-comprar-wrapper {
+    width: 100%;
+    padding: 2rem 1rem 3rem;
+    box-sizing: border-box;
+}
+
+/* Layout principal: aside + mapa, misma altura */
+.donde-comprar {
+    display: flex;
+    flex-direction: column;
+    max-width: 1224px;
+    margin: 0 auto;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+/* ── Aside (sidebar) ── */
+.donde-comprar__sidebar {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-bottom: 1px solid #d1d5db;
+    flex-shrink: 0;
+}
+
+.donde-comprar__sidebar-head {
+    padding: 0.65rem 0.75rem;
+    border-bottom: 1px solid #e5e7eb;
+    flex-shrink: 0;
+}
+
+.donde-comprar__label {
+    display: none; /* label hidden, solo el select */
+}
+
+.donde-comprar__select {
+    width: 100%;
+    padding: 0.5rem 2rem 0.5rem 0.6rem;
+    font-size: 0.875rem;
+    font-family: inherit;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    background-color: #fff;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    cursor: pointer;
+}
+
+/* Scrollable list */
+.donde-comprar__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    flex: 1 1 auto;
+    max-height: 360px; /* mobile fallback */
+}
+
+.donde-comprar__li[hidden] {
+    display: none !important;
+}
+
+.donde-comprar__item {
+    width: 100%;
+    text-align: left;
+    padding: 0.55rem 0.75rem;
+    border: none;
+    border-bottom: 1px solid #f3f4f6;
+    background: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color 0.12s ease;
+    display: block;
+}
+
+.donde-comprar__item:hover,
+.donde-comprar__item:focus-visible {
+    background-color: #fef9f0;
+    outline: none;
+}
+
+.donde-comprar__item--active {
+    background-color: #fff8ed;
+}
+
+.donde-comprar__provincia {
+    display: block;
+    font-size: 0.72rem;
+    color: #3b82f6;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 0.1rem;
+}
+
+.donde-comprar__ciudad {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: 0.01em;
+}
+
+/* ── Map wrap ── */
+.donde-comprar__map-wrap {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 320px;
+    overflow: hidden;
+}
+
+.donde-comprar__map {
+    width: 100%;
+    height: 320px;
+    z-index: 0;
+}
+
+.donde-comprar__map-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #6b7280;
+    background: rgba(245, 245, 245, 0.96);
+    z-index: 500;
+}
+
+/* ── Leaflet custom marker ── */
+.leaflet-div-icon.nikitos-marker-wrap {
+    background: transparent !important;
+    border: none !important;
+}
+
+.nikitos-marker {
+    width: 32px;
+    height: 32px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    background: #fff;
+    border: 2.5px solid #ff6900;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: -2px 0 0 -2px;
+    box-sizing: border-box;
+}
+
+.nikitos-marker__img-wrap {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+.nikitos-marker__img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* ══════════════════════════════════════════
+   Desktop (≥900px): aside + mapa lado a lado,
+   misma altura fija de 500px
+   ═════════════════════════════════════════ */
+@media (min-width: 900px) {
+    .donde-comprar-wrapper {
+        padding: 2.5rem 1.5rem 3.5rem;
+    }
+
+    .donde-comprar {
+        flex-direction: row;
+        height: 500px; /* altura fija igual para ambos */
+    }
+
+    /* Aside fijo a 280px de ancho, scroll interior */
+    .donde-comprar__sidebar {
+        width: 280px;
+        min-width: 260px;
+        max-width: 280px;
+        flex-shrink: 0;
+        height: 100%;
+        border-bottom: none;
+        border-right: 1px solid #d1d5db;
+    }
+
+    .donde-comprar__list {
+        max-height: none; /* el aside maneja la altura */
+        flex: 1 1 0;
+        overflow-y: auto;
+    }
+
+    /* Mapa ocupa el resto del ancho, misma altura */
+    .donde-comprar__map-wrap {
+        flex: 1;
+        height: 100%;
+        min-height: 0;
+    }
+
+    .donde-comprar__map {
+        height: 100%;
+        position: absolute;
+        inset: 0;
+    }
+}

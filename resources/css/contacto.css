@@ -1,0 +1,331 @@
+/* contacto.css */
+
+.contacto-wrapper {
+    width: 100%;
+}
+
+.contacto-page {
+    width: 100%;
+    padding: 2rem 1.5rem 3rem;
+    max-width: 1224px;
+    margin: 0 auto;
+}
+
+/* Bloque inferior: datos + mapa (mobile-first: columna única) */
+.contacto-datos-mapa {
+    width: 100%;
+    border-top: 1px solid #e5e7eb;
+    background-color: #fafafa;
+}
+
+.contacto-datos-mapa__inner {
+    max-width: 1224px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 3rem;
+}
+
+.contacto-datos-mapa__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+@media (min-width: 900px) {
+    .contacto-datos-mapa__grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+        gap: 2.5rem;
+        align-items: stretch;
+    }
+}
+
+.contacto-datos__titulo {
+    margin: 0 0 1.25rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.contacto-datos__lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.contacto-datos__fila {
+    display: flex;
+    gap: 0.875rem;
+    align-items: flex-start;
+}
+
+.contacto-datos__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #e5a038;
+}
+
+.contacto-datos__icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.contacto-datos__texto {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    color: #374151;
+}
+
+.contacto-datos__texto a {
+    color: #374151;
+    text-decoration: none;
+}
+
+.contacto-datos__texto a:hover {
+    color: #e5a038;
+    text-decoration: underline;
+}
+
+/* Mapa Leaflet (mismo tile layer y marcador que Donde comprar) */
+.contacto-mapa {
+    width: 100%;
+    min-height: 14rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.contacto-mapa__wrap {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-height: 14rem;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(54, 65, 83, 0.12);
+}
+
+.contacto-mapa__leaflet {
+    width: 100%;
+    height: 16rem;
+    min-height: 14rem;
+    z-index: 0;
+}
+
+@media (min-width: 900px) {
+    .contacto-mapa {
+        min-height: 18rem;
+        align-self: stretch;
+    }
+
+    .contacto-mapa__wrap {
+        min-height: 18rem;
+        flex: 1;
+    }
+
+    .contacto-mapa__leaflet {
+        height: 20rem;
+        min-height: 18rem;
+    }
+}
+
+.contacto-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.contacto-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .contacto-layout {
+        flex-direction: row;
+        gap: 4rem;
+        margin-top: 2rem;
+    }
+}
+
+.contacto-tabs {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+    .contacto-tabs {
+        flex-direction: column;
+        min-width: 180px;
+        padding-bottom: 0;
+        gap: 1.5rem;
+    }
+}
+
+.contacto-tab {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #364153;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+.contacto-tab span {
+    font-size: 1.25rem;
+    margin-left: 1rem;
+    color: #ffa221;
+}
+
+.contacto-tab:hover {
+    color: #ffa221;
+}
+
+.contacto-tab.active {
+    color: #ffa221;
+}
+
+.contacto-form-wrap {
+    flex: 1;
+}
+
+.contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .contacto-grid {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 2rem;
+        row-gap: 1.5rem;
+    }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group--full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: #fff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #364153;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #ffa221;
+}
+
+.contacto-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    align-items: flex-start;
+}
+
+@media (min-width: 640px) {
+    .contacto-footer {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.contacto-footer span {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.btn-consultar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.6rem 2.5rem;
+    border: 1px solid #ffa221;
+    border-radius: 9999px;
+    background-color: transparent;
+    color: #ffa221;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-end;
+}
+
+.btn-consultar:hover {
+    background-color: #ffa221;
+    color: #fff;
+}
+
+.contacto-field-error {
+    display: block;
+    font-size: 0.8125rem;
+    color: #c81e1e;
+    margin-top: 0.35rem;
+    line-height: 1.35;
+}
+
+.contacto-error--banner {
+    background-color: #fce8e8;
+    color: #c81e1e;
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 1px solid #f8b4b4;
+}
+
+.contacto-error--banner p {
+    margin: 0;
+    font-size: 0.9375rem;
+}

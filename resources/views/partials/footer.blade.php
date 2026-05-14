@@ -14,14 +14,14 @@
     <section class="footer__links">
         <h4 class="footer__links__h4">Secciones</h4>
         <div class="footer__links__container">
-            <a class="footer__links_a" href="">Home</a>
-            <a class="footer__links_a" href="">Productos</a>
-            <a class="footer__links_a" href="">Donde comprar</a>
-            <a class="footer__links_a" href="">RSE</a>
-            <a class="footer__links_a" href="">Recetas</a>
-            <a class="footer__links_a" href="">Nosotros</a>
-            <a class="footer__links_a" href="">Contacto</a>
-            <a class="footer__links_a" href="">Politicas de calidad</a>
+            <a class="footer__links_a" href="{{ route('home') }}">Home</a>
+            <a class="footer__links_a" href="{{ route('productos') }}">Productos</a>
+            <a class="footer__links_a" href="{{ route('donde-comprar') }}">Donde comprar</a>
+            <a class="footer__links_a" href="{{ route('rse') }}">RSE</a>
+            <a class="footer__links_a" href="{{ route('recetas') }}">Recetas</a>
+            <a class="footer__links_a" href="{{ route('nosotros') }}">Nosotros</a>
+            <a class="footer__links_a" href="{{ route('contacto') }}">Contacto</a>
+            <a class="footer__links_a" href="{{ route('politicas-calidad') }}">Politicas de calidad</a>
         </div>
     </section>
 

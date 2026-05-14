@@ -10,9 +10,7 @@ class ProductoController extends Controller
     // Lista todos los productos, agrupados por categoría
     public function index()
     {
-        // with('productos') es eager loading — evita el problema N+1
-        // (sin esto, haría 1 query por cada categoría, con esto hace solo 2 en total)
-        $categorias = Categoria::with('productos')->get();
+        $categorias = Categoria::all();
 
         return view('productos.index', compact('categorias'));
     }
@@ -20,9 +18,27 @@ class ProductoController extends Controller
     // Filtra productos de una categoría específica
     public function categoria(Categoria $categoria)
     {
-        // Laravel hace la magia de buscar por ID automáticamente (Route Model Binding)
-        $categoria->load('productos'); // carga los productos de esta categoría
+        $categoria->load('productos');
+        $categorias = Categoria::orderBy('id')->get();
 
-        return view('productos.categoria', compact('categoria'));
+        return view('productos.categoria', compact('categoria', 'categorias'));
+    }
+
+    public function show(Categoria $categoria, Producto $producto)
+    {
+        $productos = Producto::where('categoria_id', $categoria->id)->orderBy('id')->get();
+        $index = $productos->search(fn ($p) => $p->id === $producto->id);
+
+        $anterior = $index > 0 ? $productos[$index - 1] : null;
+        $siguiente = $index < $productos->count() - 1 ? $productos[$index + 1] : null;
+
+        $relacionados = Producto::where('categoria_id', $categoria->id)
+            ->where('id', '!=', $producto->id)
+            ->take(3)
+            ->get();
+
+        $categorias = Categoria::orderBy('id')->get();
+
+        return view('productos.show', compact('categoria', 'producto', 'anterior', 'siguiente', 'relacionados', 'categorias'));
     }
 }

@@ -1,8 +1,14 @@
 {{-- products-home.blade.php --}}
 
 <x-card-grid title="Linea de productos" columns="4">
-    <x-card-category href="#" image="{{ asset('images/cat1.png') }}" alt="" title="Línea juvenil metalizada 1" color="#F05199" button_text="Ver todos" />
-    <x-card-category href="#" image="{{ asset('images/cat2.png') }}" alt="" title="Línea juvenil metalizada 2" color="#FD7E80" button_text="Ver todos" />
-    <x-card-category href="#" image="{{ asset('images/cat3.png') }}" alt="" title="Línea fraccionada cristal x 40grs" color="#DC6DFC" button_text="Ver todos" />
-    <x-card-category href="#" image="{{ asset('images/cat4.png') }}" alt="" title="Línea max x 65grs" color="#1CCB86" button_text="Ver todos" />
+    @foreach($categorias as $categoria)
+        <x-card-category
+            href="{{ route('productos.categoria', $categoria->id) }}"
+            image="{{ $categoria->imagen_url }}"
+            alt="{{ $categoria->nombre }}"
+            title="{{ $categoria->nombre }}"
+            color="{{ $categoria->color }}"
+            button_text="Ver todos"
+        />
+    @endforeach
 </x-card-grid>

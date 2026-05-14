@@ -12,4 +12,17 @@ class Categoria extends Model
     {
         return $this->hasMany(Producto::class);
     }
+
+    public function getImagenUrlAttribute(): string
+    {
+        if (! $this->imagen) {
+            return asset('images/placeholder.png');
+        }
+
+        if (str_starts_with($this->imagen, 'images/')) {
+            return asset($this->imagen);
+        }
+
+        return asset('storage/'.$this->imagen);
+    }
 }

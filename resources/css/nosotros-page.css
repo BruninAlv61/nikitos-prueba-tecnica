@@ -1,0 +1,83 @@
+/* Página Nosotros: filas alternadas bajo el hero compartido (.page-hero) */
+
+.nosotros-page {
+    background: #ffffff;
+    padding-bottom: 3rem;
+}
+
+.nosotros-page__sections {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+    .nosotros-page__sections {
+        padding-top: 2.75rem;
+        gap: 3.5rem;
+    }
+}
+
+.nosotros-page__row {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: stretch;
+}
+
+.nosotros-page__copy {
+    flex: 1;
+    min-width: 0;
+}
+
+.nosotros-page__h2 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+}
+
+.nosotros-page__p {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #64748b;
+}
+
+.nosotros-page__p:last-child {
+    margin-bottom: 0;
+}
+
+.nosotros-page__figure {
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+}
+
+.nosotros-page__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+}
+
+@media (min-width: 768px) {
+    .nosotros-page__row {
+        flex-direction: row;
+        align-items: center;
+        gap: 2.5rem;
+    }
+
+    .nosotros-page__row--reverse {
+        flex-direction: row-reverse;
+    }
+
+    .nosotros-page__img {
+        border-radius: 1.125rem;
+    }
+}

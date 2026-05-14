@@ -6,9 +6,9 @@
         <article class="about-us__content__text">
             <h3 class="about-us__content__text__h3">Nosotros</h3>
             <p class="about-us__content__text__p">
-                Nikitos se encuentra presente en el mercado local desde hace 40 años. Ofreciendo un variado portfolio de snacks , tales como Pizzitos, Palitos salados, Maikitos de Queso, Papas Fritas, Cereales, Pochoclos Acaramelados, Bolitas/Aritos dulces, y Jugos para Congelar. El objetivo es llegar a los consumidores con ingredientes de calidad, contando con presencia de venta en todo el país y atención de excelencia.
+                {{ $inicioContenido->about_us_texto }}
             </p>
-            <button class="about-us__content__text__btn">Mas info</button>
+            <a class="about-us__content__text__btn" href="{{ route('nosotros') }}">Mas info</a>
         </article>
         <picture class="about-us__content__img-container">
             <img class="about-us__content__img-container__img" src="{{ asset('images/about-us.png') }}" alt="">

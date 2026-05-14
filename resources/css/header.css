@@ -13,6 +13,12 @@
     margin-top: -11dvh;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.295);
 
+    .header__logo-link {
+        display: inline-flex;
+        line-height: 0;
+        text-decoration: none;
+    }
+
     .logo {
         height: 67px;
         width: 138px;
@@ -49,7 +55,13 @@
 
             li {
                 a {
+                    text-decoration: none;
+                    border: none;
+                    background-color: transparent;
                     color: #364153;
+                    &:focus {
+                        outline: none;
+                    }
                 }
 
                 a:hover {
@@ -84,12 +96,21 @@
             color: #fff;
             font-weight: 560;
             cursor: pointer;
+            text-decoration: none;
+            box-sizing: border-box;
 
             transition: all 0.3s ease;
 
             &:hover {
                 background-color: #ffae36;
             }
+        }
+
+        .header-user-menu--mobile {
+            position: relative;
+            width: 100%;
+            max-width: 260px;
+            margin-top: 20px;
         }
     }
 
@@ -118,13 +139,17 @@
     .header {
         width: calc(100% - 20px);
         border-radius: 12px;
-        margin-top: calc(-11dvh + 10px);
+        margin-top: 10px;
         margin-inline: auto;
         left: 0;
         right: 0;
 
         .nav {
             .button-login {
+                display: none;
+            }
+
+            .header-user-menu--mobile {
                 display: none;
             }
         }
@@ -144,18 +169,25 @@
             color: #fff;
             font-weight: 560;
             cursor: pointer;
+            text-decoration: none;
+            box-sizing: border-box;
             transition: all 0.3s ease;
 
             &:hover {
                 background-color: #ffae36;
             }
         }
+
+        .header-user-menu--desktop {
+            display: block;
+        }
     }
 }
 
 @media (min-width: 1024px) {
     .header {
-        .button-login--desktop {
+        .button-login--desktop,
+        .header-user-menu--desktop {
             order: 3;
         }
 
@@ -189,7 +221,6 @@
     .header {
         height: 10dvh;
         max-width: 1224px;
-        margin-top: calc(-10dvh + 10px);
         margin-inline: auto;
         left: 0;
         right: 0;
@@ -198,4 +229,99 @@
             padding: 0;
         }
     }
+}
+
+/* Cuenta de usuario (pill + menú) */
+.header-user-menu {
+    position: relative;
+    z-index: 6;
+}
+
+.header-user-menu--desktop {
+    display: none;
+}
+
+.header-user-menu__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0.5rem 1.35rem;
+    max-width: min(100%, 240px);
+    border-radius: 9999px;
+    border: 1px solid #e7a641;
+    background-color: transparent;
+    color: #e7a641;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+
+    &:hover {
+        background-color: rgba(231, 166, 65, 0.08);
+    }
+
+    &:focus-visible {
+        outline: 2px solid #e7a641;
+        outline-offset: 2px;
+    }
+}
+
+.header-user-menu__dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    min-width: 11.5rem;
+    padding: 0.35rem 0;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(54, 65, 83, 0.12);
+    z-index: 50;
+}
+
+.header-user-menu__dropdown[hidden] {
+    display: none !important;
+}
+
+.header-user-menu__item {
+    display: block;
+    width: 100%;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #364153;
+    text-decoration: none;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    box-sizing: border-box;
+
+    &:hover {
+        background-color: rgba(255, 162, 33, 0.1);
+        color: #ff6900;
+    }
+
+    &:focus-visible {
+        outline: none;
+        background-color: rgba(255, 162, 33, 0.12);
+    }
+}
+
+.header-user-menu__form {
+    margin: 0;
+    padding: 0;
+}
+
+.header-user-menu__item--button {
+    border-top: 1px solid rgba(54, 65, 83, 0.08);
 }
