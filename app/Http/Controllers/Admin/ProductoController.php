@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductoRequest;
 use App\Http\Requests\UpdateProductoRequest;
 use App\Models\Categoria;
 use App\Models\Producto;
+use App\Services\Images\OptimizedPublicImage;
 use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
@@ -31,7 +32,7 @@ class ProductoController extends Controller
         $data['destacado'] = $request->boolean('destacado');
 
         if ($request->hasFile('imagen')) {
-            $data['imagen'] = $request->file('imagen')->store('productos', 'public');
+            $data['imagen'] = OptimizedPublicImage::store($request->file('imagen'), 'productos');
         }
 
         Producto::create($data);
@@ -55,7 +56,7 @@ class ProductoController extends Controller
             if ($producto->imagen) {
                 Storage::disk('public')->delete($producto->imagen);
             }
-            $producto->imagen = $request->file('imagen')->store('productos', 'public');
+            $producto->imagen = OptimizedPublicImage::store($request->file('imagen'), 'productos');
         }
 
         $producto->save();

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoriaRequest;
 use App\Http\Requests\UpdateCategoriaRequest;
 use App\Models\Categoria;
+use App\Services\Images\OptimizedPublicImage;
 use Illuminate\Support\Facades\Storage;
 
 class CategoriaController extends Controller
@@ -27,7 +28,7 @@ class CategoriaController extends Controller
         $data = $request->safe()->only(['nombre', 'color']);
 
         if ($request->hasFile('imagen')) {
-            $data['imagen'] = $request->file('imagen')->store('categorias', 'public');
+            $data['imagen'] = OptimizedPublicImage::store($request->file('imagen'), 'categorias');
         }
 
         if ($request->hasFile('catalogo')) {
@@ -52,7 +53,7 @@ class CategoriaController extends Controller
             if ($categoria->imagen) {
                 Storage::disk('public')->delete($categoria->imagen);
             }
-            $data['imagen'] = $request->file('imagen')->store('categorias', 'public');
+            $data['imagen'] = OptimizedPublicImage::store($request->file('imagen'), 'categorias');
         }
 
         if ($request->hasFile('catalogo')) {

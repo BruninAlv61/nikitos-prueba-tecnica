@@ -28,6 +28,32 @@
                 @enderror
             </div>
 
+            <div class="form-group">
+                <label for="hero_banner">Banner de fondo (imagen JPG, PNG, WebP, GIF o vídeo MP4)</label>
+                <input
+                    id="hero_banner"
+                    type="file"
+                    name="hero_banner"
+                    accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,.mp4"
+                >
+                <p style="margin-top: 6px; font-size: 12px; color: #666;">
+                    Las imágenes se optimizan al guardar (como en productos). Los GIF se conservan con animación. MP4 hasta 50&nbsp;MB.
+                </p>
+                @if ($contenido->hero_banner_path)
+                    <p style="margin-top: 10px; font-size: 13px;">
+                        Archivo actual:
+                        <a href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($contenido->hero_banner_path) }}" target="_blank" rel="noopener noreferrer">abrir</a>
+                    </p>
+                    <label style="display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 14px;">
+                        <input type="checkbox" name="hero_banner_eliminar" value="1" @checked(old('hero_banner_eliminar'))>
+                        Quitar banner personalizado (usar el vídeo por defecto del sitio)
+                    </label>
+                @endif
+                @error('hero_banner')
+                    <div style="color: red; font-size: 12px; margin-top: 4px;">{{ $message }}</div>
+                @enderror
+            </div>
+
             <hr style="margin: 32px 0; border: none; border-top: 1px solid #ddd;">
 
             <h2 style="margin-bottom: 16px; font-size: 18px; color: #F4A261;">Sección Nosotros (Home)</h2>

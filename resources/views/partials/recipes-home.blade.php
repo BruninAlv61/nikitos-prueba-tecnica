@@ -12,6 +12,6 @@
             img_size="cover"
         />
     @empty
-        <p style="color:#888;grid-column:1/-1;text-align:center;">Próximamente tendremos recetas.</p>
+        <p style="color:#888;grid-column:1/-1;text-align:center;">No hay recetas</p>
     @endforelse
 </x-card-grid>

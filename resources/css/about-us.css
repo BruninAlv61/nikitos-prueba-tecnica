@@ -3,6 +3,7 @@
     height: auto;
 
     background-color: #ffa221;
+    z-index: 1;
 
     .about-us__content {
         display: flex;

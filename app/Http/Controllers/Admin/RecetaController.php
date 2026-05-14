@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRecetaRequest;
 use App\Http\Requests\UpdateRecetaRequest;
 use App\Models\Receta;
+use App\Services\Images\OptimizedPublicImage;
 use Illuminate\Support\Facades\Storage;
 
 class RecetaController extends Controller
@@ -35,7 +36,7 @@ class RecetaController extends Controller
         ));
 
         if ($request->hasFile('imagen')) {
-            $data['imagen'] = $request->file('imagen')->store('recetas', 'public');
+            $data['imagen'] = OptimizedPublicImage::store($request->file('imagen'), 'recetas');
         }
 
         Receta::create($data);
@@ -64,7 +65,7 @@ class RecetaController extends Controller
             if ($receta->imagen && ! str_starts_with($receta->imagen, 'images/')) {
                 Storage::disk('public')->delete($receta->imagen);
             }
-            $receta->imagen = $request->file('imagen')->store('recetas', 'public');
+            $receta->imagen = OptimizedPublicImage::store($request->file('imagen'), 'recetas');
         }
 
         $receta->save();
