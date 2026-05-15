@@ -5,7 +5,7 @@
         ? (str_starts_with($categoria->catalogo, 'http')
             ? $categoria->catalogo
             : asset($categoria->catalogo))
-        : asset('images/Catálogo 2026 para la pagina web.pdf');
+        : asset('images/catalogo.pdf');
     $catalogoEsExterno = str_starts_with((string) $catalogoHref, 'http://')
         || str_starts_with((string) $catalogoHref, 'https://');
 @endphp
