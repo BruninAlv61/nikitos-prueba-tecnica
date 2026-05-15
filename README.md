@@ -4,10 +4,16 @@ Réplica orientada al sitio **Nikitos**: catálogo público por categorías, rec
 
 **Repositorio de entrega:** [github.com/BruninAlv61/nikitos-prueba-tecnica](https://github.com/BruninAlv61/nikitos-prueba-tecnica)
 
-```bash
-git clone https://github.com/BruninAlv61/nikitos-prueba-tecnica.git
-cd nikitos-prueba-tecnica
-```
+### Demo en línea (Railway)
+
+| | |
+| --- | --- |
+| **Sitio** | https://nikitos-prueba-tecnica-production-b652.up.railway.app |
+| **Panel admin** | https://nikitos-prueba-tecnica-production-b652.up.railway.app/admin |
+| **Usuario demo** | `admin@nikitos.com.ar` |
+| **Contraseña** | `admin123` |
+
+En producción el front compilado se sirve desde `public/build/` (no hace falta Vite en el servidor). El panel admin usa estilos propios y no depende de ese build.
 
 **Documentación técnica ampliada:** carpeta `[docs/](docs/)` — en particular [estructura del proyecto](docs/estructura-proyecto.md), [panel de administración](docs/panel-administracion.md) e [optimización de imágenes](docs/image-optimization.md).
 
@@ -156,17 +162,19 @@ Para optimización de imágenes en el admin: `**ext-gd`** con soporte **WebP** c
 
 ## Instalación (desarrollo local)
 
-Seguí los pasos en orden. No pegues comentarios `# ...` en la misma línea que `php artisan`.
+El repositorio **no incluye** `.env` (es correcto: contiene secretos). Hay que crearlo a partir de `.env.example`.
 
-### 0. PHP, Composer y Node
+Seguí los pasos **en orden**. No pegues comentarios `# ...` en la misma línea que `php artisan`.
+
+### 0. Comprobar herramientas
 
 ```bash
-php -v
-composer --version
-node -v
+php -v          # debe ser 8.2, 8.3 o 8.4
+composer -V
+node -v         # LTS 20+ recomendado
 ```
 
-### 1. Código y dependencias PHP
+### 1. Clonar e instalar dependencias PHP
 
 ```bash
 git clone https://github.com/BruninAlv61/nikitos-prueba-tecnica.git
@@ -174,30 +182,34 @@ cd nikitos-prueba-tecnica
 composer install
 ```
 
-### 2. Entorno y clave de aplicación
+### 2. Crear `.env` y clave de la app
 
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
-Editá `.env`: al menos `**APP_URL**` acorde a cómo servís el sitio (p. ej. `http://127.0.0.1:8000` con `php artisan serve`).
+Con eso, `APP_KEY` queda guardado en `.env`. **No hace falta inventar más variables** para un primer arranque local con SQLite: `.env.example` ya trae valores válidos para desarrollo.
 
-### 3. Base de datos
+| Variable | ¿Tocarla al clonar? | Notas |
+| -------- | ------------------- | ----- |
+| `APP_KEY` | Se genera con `key:generate` | Obligatoria; sin ella Laravel no arranca. |
+| `APP_URL` | Recomendado | Con `php artisan serve` usá `http://127.0.0.1:8000` (no `localhost` a secas, para evitar rarezas con cookies). |
+| `DB_CONNECTION` | Opcional | Por defecto `sqlite` en `.env.example`. |
+| `SESSION_DRIVER`, `QUEUE_CONNECTION`, `CACHE_STORE` | No | Dejá `database`; requieren migraciones (paso 4). |
+| `MAIL_*` | No | En local los mails van al log (`MAIL_MAILER=log`). |
 
-**Opción A — SQLite**
+### 3. Base de datos (SQLite, recomendado en local)
 
 ```bash
 touch database/database.sqlite
 ```
 
-Con `DB_CONNECTION=sqlite` en `.env` (como en `.env.example`).
+Dejá en `.env`: `DB_CONNECTION=sqlite` (ya viene así en el ejemplo).
 
-**Opción B — MySQL**
+**MySQL (opcional):** cambiá `DB_CONNECTION=mysql` y completá `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`; creá la base vacía antes de migrar.
 
-Configurá `DB_CONNECTION=mysql`, host, puerto, base, usuario y contraseña; creá la base antes de migrar.
-
-### 4. Migraciones, datos de prueba y enlace de storage
+### 4. Tablas, datos de prueba y storage
 
 ```bash
 php artisan migrate
@@ -205,42 +217,60 @@ php artisan db:seed
 php artisan storage:link
 ```
 
-- `**db:seed`:** categorías, productos, recetas y contenido de nosotros; **no** crea un usuario administrador.
-- `**storage:link`:** necesario para ver subidas (imágenes, CVs, PDFs) bajo `public/storage`.
+- **`db:seed`:** categorías, productos, recetas, contenido de nosotros y usuario **admin** (`admin@nikitos.com.ar` / `admin123`).
+- **`storage:link`:** enlaza `storage/app/public` → `public/storage` (subidas del admin y CVs de contacto).
 
-**Nota sobre imágenes de demo:** los seeders de categorías y productos usan rutas bajo `public/images/` (p. ej. `images/cat1.png`, `images/des1.png`). La primera receta demo puede apuntar a `images/recetas/nachos-tacos.jpg`; si esa ruta no existe en tu clon, agregá el archivo o ajustá el seeder para usar otra imagen ya presente (p. ej. `images/recetas.png`).
+**Imágenes de demo:** los seeders apuntan a archivos en `public/images/`. Si falta alguno (p. ej. `images/recetas/nachos-tacos.jpg`), verás un 404 puntual; el resto del sitio sigue funcionando.
 
-### 5. Assets front-end (Vite)
+### 5. Dependencias front-end
 
 ```bash
 npm install
-npm run dev
 ```
 
-- `**npm run dev`:** Vite en desarrollo (ideal junto a `php artisan serve`).
-- `**npm run build`:** build de producción (`public/build/`).
+### 6. Levantar el proyecto (dos terminales)
 
-### 6. Servidor de desarrollo
+El **sitio público** usa Vite + Tailwind. El **panel `/admin`** lleva CSS propio y se ve bien solo con PHP; el home y productos **necesitan Vite en desarrollo** (o un build previo).
+
+**Terminal 1 — PHP (backend y páginas):**
 
 ```bash
 php artisan serve
 ```
 
-#### Atajo Composer (setup rápido)
+Abrí: http://127.0.0.1:8000
+
+**Terminal 2 — Vite (estilos y assets del sitio público):**
 
 ```bash
-composer run setup
+npm run dev
 ```
 
-Instala dependencias PHP, prepara `.env` si falta, genera clave, migra y ejecuta `npm run build`. Con **SQLite**, creá antes `database/database.sqlite` para que la migración no falle.
+Dejá **las dos corriendo** mientras desarrollás. Si solo corrés `php artisan serve`, verás HTML sin estilos en la parte pública (el admin puede verse normal).
 
-#### Desarrollo con varios procesos
+**Alternativa sin segunda terminal:** compilá una vez y no uses `npm run dev`:
+
+```bash
+npm run build
+php artisan serve
+```
+
+Cada vez que cambies CSS/JS en `resources/`, volvé a ejecutar `npm run build`.
+
+**Alternativa todo-en-uno** (PHP + cola + logs + Vite en un solo comando):
 
 ```bash
 composer run dev
 ```
 
-Levanta servidor PHP, worker de cola, Pail y Vite según el script definido en `composer.json`.
+#### Atajo de instalación inicial
+
+```bash
+touch database/database.sqlite   # antes, si usás SQLite
+composer run setup
+```
+
+Ejecuta `composer install`, copia `.env` si falta, genera clave, migra y `npm run build`. Después igual podés usar `npm run dev` + `php artisan serve` para desarrollo con recarga en caliente.
 
 ---
 
@@ -281,15 +311,17 @@ Healthcheck HTTP por defecto de Laravel: `**GET /up**`.
 ## Problemas frecuentes
 
 
-| Síntoma                  | Qué revisar                                                                                                                                                              |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `composer install` y PHP | `php -v` ≥ 8.2.                                                                                                                                                          |
-| SQLite                   | Archivo `database/database.sqlite` y `DB_CONNECTION=sqlite`.                                                                                                             |
-| Sesión / cola / caché    | Migraciones aplicadas (`sessions`, `jobs`, `cache`).                                                                                                                     |
-| Manifest de Vite         | `npm run dev` o `npm run build`.                                                                                                                                         |
-| Subidas no visibles      | Permisos en `storage/` y `bootstrap/cache/`; `php artisan storage:link`.                                                                                                 |
-| Mapa vacío               | Assets en `public/vendor/leaflet/`.                                                                                                                                      |
-| Imagen “placeholder” 404 | Los modelos pueden usar `images/placeholder.png` cuando no hay imagen; si no existe en `public/images/`, agregá un PNG con ese nombre o ajustá el fallback en el modelo. |
+| Síntoma | Qué revisar |
+| ------- | ----------- |
+| Sitio público sin estilos (HTML plano) | ¿Tenés `npm run dev` o corriste `npm run build`? El admin no usa Vite. |
+| `No application encryption key` | `cp .env.example .env` y `php artisan key:generate`. |
+| `composer install` falla por PHP | `php -v` ≥ 8.2 en la misma terminal. |
+| SQLite / migraciones | `touch database/database.sqlite` y `DB_CONNECTION=sqlite`. |
+| Sesión / login raro | `php artisan migrate` (tablas `sessions`, `jobs`, `cache`). |
+| `Vite manifest not found` | `npm run dev` o `npm run build`. |
+| Subidas no visibles | `php artisan storage:link` y permisos en `storage/`, `bootstrap/cache/`. |
+| Mapa vacío | Assets en `public/vendor/leaflet/`. |
+| Imagen “placeholder” 404 | Agregá `public/images/placeholder.png` o ignorá si es solo demo. |
 
 
 ---

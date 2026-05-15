@@ -47,11 +47,18 @@
                 </label>
 
                 <div class="auth-form-actions">
-                    @if (Route::has('password.request'))
-                        <a class="auth-link" href="{{ route('password.request') }}">
-                            ¿Olvidaste tu contraseña?
-                        </a>
-                    @endif
+                    <div class="auth-form-links">
+                        @if (Route::has('register'))
+                            <a class="auth-link" href="{{ route('register') }}">
+                                ¿No tenés cuenta? Registrate
+                            </a>
+                        @endif
+                        @if (Route::has('password.request'))
+                            <a class="auth-link" href="{{ route('password.request') }}">
+                                ¿Olvidaste tu contraseña?
+                            </a>
+                        @endif
+                    </div>
 
                     <button type="submit" class="auth-btn-submit">
                         Ingresar

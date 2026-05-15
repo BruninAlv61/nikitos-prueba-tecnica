@@ -1,59 +1,96 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+    <div class="auth-page">
+        <div class="auth-card">
+            <h1 class="auth-card__title">Crear cuenta</h1>
+            <p class="auth-card__lead">Completá tus datos para registrarte.</p>
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="given-name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <form method="POST" action="{{ route('register') }}" class="auth-form" novalidate>
+                @csrf
+
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input
+                        id="name"
+                        type="text"
+                        name="name"
+                        value="{{ old('name') }}"
+                        required
+                        autofocus
+                        autocomplete="given-name"
+                    >
+                    @error('name')
+                        <span class="contacto-field-error" role="alert">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group auth-field-gap">
+                    <label for="lastname">Apellido</label>
+                    <input
+                        id="lastname"
+                        type="text"
+                        name="lastname"
+                        value="{{ old('lastname') }}"
+                        required
+                        autocomplete="family-name"
+                    >
+                    @error('lastname')
+                        <span class="contacto-field-error" role="alert">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group auth-field-gap">
+                    <label for="email">Correo electrónico</label>
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        value="{{ old('email') }}"
+                        required
+                        autocomplete="username"
+                    >
+                    @error('email')
+                        <span class="contacto-field-error" role="alert">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group auth-field-gap">
+                    <label for="password">Contraseña</label>
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        required
+                        autocomplete="new-password"
+                    >
+                    @error('password')
+                        <span class="contacto-field-error" role="alert">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group auth-field-gap">
+                    <label for="password_confirmation">Confirmar contraseña</label>
+                    <input
+                        id="password_confirmation"
+                        type="password"
+                        name="password_confirmation"
+                        required
+                        autocomplete="new-password"
+                    >
+                    @error('password_confirmation')
+                        <span class="contacto-field-error" role="alert">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="auth-form-actions">
+                    <a class="auth-link" href="{{ route('login') }}">
+                        ¿Ya tenés cuenta? Iniciar sesión
+                    </a>
+
+                    <button type="submit" class="auth-btn-submit">
+                        Registrarse
+                    </button>
+                </div>
+            </form>
         </div>
-
-        <!-- Last name -->
-        <div class="mt-4">
-            <x-input-label for="lastname" :value="__('Last name')" />
-            <x-text-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')" required autocomplete="family-name" />
-            <x-input-error :messages="$errors->get('lastname')" class="mt-2" />
-        </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
+    </div>
 </x-guest-layout>
